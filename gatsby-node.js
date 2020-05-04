@@ -21,12 +21,11 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     return
   }
 
-  const blogPost = path.resolve('./src/templates/blog-post.js')
   const posts = response.data.allContentfulBlogPost.edges
   posts.forEach((post, index) => {
     createPage({
       path: `/blog/${post.node.slug}/`,
-      component: blogPost,
+      component: path.resolve('./src/templates/blog-post.js'),
       context: {
         slug: post.node.slug,
       },
