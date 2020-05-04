@@ -4,7 +4,7 @@ import base from './base.css'
 import Container from './container'
 import Navigation from './navigation'
 
-const layout = ({ location, children }) => {
+const Layout = ({ location, children }) => {
   let header
 
   let rootPath = `/`
@@ -20,4 +20,4 @@ const layout = ({ location, children }) => {
   )
 }
 
-export default layout
+export default Layout

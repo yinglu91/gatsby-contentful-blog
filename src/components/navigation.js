@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styles from './navigation.module.css'
 
-const navigation = () => {
+const Navigation = () => {
   return (
     <nav role="navigation">
       <ul className={styles.navigation}>
@@ -17,4 +17,4 @@ const navigation = () => {
   )
 }
 
-export default navigation
+export default Navigation
