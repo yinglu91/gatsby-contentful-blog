@@ -1,7 +1,7 @@
 const path = require('path')
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
-  const response = await graphql(
+  const result = await graphql(
     `
       {
         allContentfulBlogPost {
@@ -16,18 +16,17 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     `
   )
 
-  if (response.errors) {
-    console.log(response.errors)
+  if (result.errors) {
+    console.log(result.errors)
     return
   }
 
-  const posts = response.data.allContentfulBlogPost.edges
-  posts.forEach((post, index) => {
+  result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
     createPage({
-      path: `/blog/${post.node.slug}/`,
+      path: `/blog/${node.slug}/`,
       component: path.resolve('./src/templates/blog-post.js'),
       context: {
-        slug: post.node.slug,
+        slug: node.slug,
       },
     })
   })
