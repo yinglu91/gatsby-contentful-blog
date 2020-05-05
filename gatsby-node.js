@@ -5,11 +5,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     `
       {
         allContentfulBlogPost {
-          edges {
-            node {
-              title
-              slug
-            }
+          nodes {
+            slug
           }
         }
       }
@@ -21,7 +18,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     return
   }
 
-  result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
+  result.data.allContentfulBlogPost.nodes.forEach((node) => {
     createPage({
       path: `/blog/${node.slug}/`,
       component: path.resolve('./src/templates/blog-post.js'),
