@@ -18,6 +18,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     return
   }
 
+  // "slug": "hello-world"
+  // http://localhost:8000/blog/hello-world/
   result.data.allContentfulBlogPost.nodes.forEach((node) => {
     createPage({
       path: `/blog/${node.slug}/`,
