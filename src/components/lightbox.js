@@ -17,17 +17,6 @@ const PreviewButton = styled.button`
   margin: 0;
 `
 
-/*
-post.images.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <Img fluid={item.fluid} />
-                      <h4>{item.title}</h4>
-                      <p>{item.description}</p>
-                    </li>
-                  )
-                })
-                */
 const Lightbox = ({ images: carImages }) => {
   const [showLightbox, setShowLightbox] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -45,6 +34,8 @@ const Lightbox = ({ images: carImages }) => {
             }}
           >
             <Img fluid={image.fluid} />
+            {image.title && <h4>{image.title}</h4>}
+            {image.description && <p>{image.description}</p>}
           </PreviewButton>
         ))}
       </LightboxContainer>
@@ -52,6 +43,9 @@ const Lightbox = ({ images: carImages }) => {
       {showLightbox && (
         <Dialog>
           <Img fluid={selectedImage.fluid} />
+          {selectedImage.title && <h4>{selectedImage.title}</h4>}
+          {selectedImage.description && <p>{selectedImage.description}</p>}
+
           <button type="button" onClick={() => setShowLightbox(false)}>
             Close
           </button>
