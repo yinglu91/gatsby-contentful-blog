@@ -45,15 +45,16 @@ const BlogPostTemplate = ({ location, data }) => {
 
           <div className="wrapper">
             <ul className="article-list">
-              {post.images.map((item, index) => {
-                return (
-                  <li key={index}>
-                    <Img fixed={item.fixed} />
-                    <h4>{item.title}</h4>
-                    <p>{item.description}</p>
-                  </li>
-                )
-              })}
+              {post.images &&
+                post.images.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <Img fixed={item.fixed} />
+                      <h4>{item.title}</h4>
+                      <p>{item.description}</p>
+                    </li>
+                  )
+                })}
             </ul>
           </div>
 
