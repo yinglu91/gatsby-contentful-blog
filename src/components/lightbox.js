@@ -11,7 +11,9 @@ const LightboxContainer = styled.div`
 `
 
 const ImageContainer = styled.div`
-  border: none;
+  background-color: lightgray;
+  width: 300px;
+  height: 280px;
 `
 
 const PreviewButton = styled.button`
@@ -37,9 +39,11 @@ const Lightbox = ({ images }) => {
               setSelectedImage(image)
             }}
           >
-            <Img fluid={image.fluid} style={{ width: 300, height: 200 }} />
-            {image.title && <h4>{image.title}</h4>}
-            {image.description && <p>{image.description}</p>}
+            <ImageContainer>
+              <Img fluid={image.fluid} style={{ width: 300, height: 200 }} />
+              {image.title && <h4>{image.title}</h4>}
+              {image.description && <p>{image.description}</p>}
+            </ImageContainer>
           </PreviewButton>
         ))}
       </LightboxContainer>
