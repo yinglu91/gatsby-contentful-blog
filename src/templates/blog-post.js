@@ -3,8 +3,20 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
+import Slider from 'react-slick'
 
-import heroStyles from '../components/hero.module.css'
+import styles from '../components/hero.module.css'
+
+const settings = {
+  dots: true,
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  speed: 6000,
+  autoplaySpeed: 6000,
+  cssEase: 'linear',
+}
 
 const BlogPostTemplate = ({ location, data }) => {
   const post = data.contentfulBlogPost
@@ -14,9 +26,9 @@ const BlogPostTemplate = ({ location, data }) => {
     <Layout location={location}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        <div className={heroStyles.hero}>
+        <div className={styles.hero}>
           <Img
-            className={heroStyles.heroImage}
+            className={styles.heroImage}
             alt={post.title}
             fluid={post.heroImage.fluid}
           />
@@ -30,11 +42,43 @@ const BlogPostTemplate = ({ location, data }) => {
           >
             {post.publishDate}
           </p>
+
+          <div className="wrapper">
+            <ul className="article-list">
+              {post.images.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <Img fixed={item.fixed} />
+                    <h4>{item.title}</h4>
+                    <p>{item.description}</p>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+
           <div
             dangerouslySetInnerHTML={{
               __html: post.body.childMarkdownRemark.html,
             }}
           />
+
+          {/* <section className={styles.template}>
+            <div className={styles.center}>
+              <div className={styles.images}>
+                {post.images.map((item, index) => {
+                  return (
+                    
+                    <Img
+                      key={index}
+                      fluid={item.fluid}
+                      className={styles.image}
+                    />
+                  )
+                })}
+              </div>
+            </div>
+          </section> */}
         </div>
       </div>
     </Layout>
@@ -56,6 +100,13 @@ export const pageQuery = graphql`
       heroImage {
         fluid(maxWidth: 1180, background: "rgb:000000") {
           ...GatsbyContentfulFluid_tracedSVG
+        }
+      }
+      images {
+        title
+        description
+        fixed(width: 250, height: 200) {
+          ...GatsbyContentfulFixed_tracedSVG
         }
       }
       body {
