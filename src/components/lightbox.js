@@ -6,8 +6,17 @@ import '@reach/dialog/styles.css'
 
 const LightboxContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 5px;
+
+  @media (min-width: 568px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  @media (min-width: 991px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
 `
 
 const ImageContainer = styled.div`
@@ -55,7 +64,7 @@ const Lightbox = ({ images }) => {
           {selectedImage.description && <p>{selectedImage.description}</p>}
 
           <button type="button" onClick={() => setShowLightbox(false)}>
-            Close
+            x
           </button>
         </Dialog>
       )}
