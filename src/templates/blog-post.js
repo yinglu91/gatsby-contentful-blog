@@ -49,7 +49,7 @@ const BlogPostTemplate = ({ location, data }) => {
                 post.images.map((item, index) => {
                   return (
                     <li key={index}>
-                      <Img fixed={item.fixed} />
+                      <Img fluid={item.fluid} />
                       <h4>{item.title}</h4>
                       <p>{item.description}</p>
                     </li>
@@ -106,8 +106,8 @@ export const pageQuery = graphql`
       images {
         title
         description
-        fixed(width: 250, height: 200) {
-          ...GatsbyContentfulFixed_tracedSVG
+        fluid(maxWidth: 2000) {
+          ...GatsbyContentfulFluid
         }
       }
       body {
