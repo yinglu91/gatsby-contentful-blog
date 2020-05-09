@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import Slider from 'react-slick'
+import Lightbox from '../components/lightbox'
 
 import styles from '../components/hero.module.css'
 
@@ -45,16 +46,7 @@ const BlogPostTemplate = ({ location, data }) => {
 
           <div className="wrapper">
             <ul className="article-list">
-              {post.images &&
-                post.images.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <Img fluid={item.fluid} />
-                      <h4>{item.title}</h4>
-                      <p>{item.description}</p>
-                    </li>
-                  )
-                })}
+              {post.images && <Lightbox images={post.images} />}
             </ul>
           </div>
 

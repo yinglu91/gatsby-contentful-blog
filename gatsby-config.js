@@ -38,5 +38,6 @@ module.exports = {
       options: contentfulConfig,
     },
     `gatsby-plugin-playground`,
+    `gatsby-plugin-styled-components`,
   ],
 }
